@@ -10,12 +10,11 @@ import music
 import os
 import youtube_dl as ytdl
 import subprocess
-from mcstatus import MinecraftServer
 
 bot = commands.Bot(command_prefix=".")
 
 def Memefunc():
-    r = praw.Reddit(client_id = "xda-zz7ywcv8cA",client_secret = "JKnX0wFSUzQTMKqnwQFRZcsQ5G8",username = "istifaaali",password = "grenoblebest",user_agent = "testmemebot")
+    r = praw.Reddit(client_id = "",client_secret = "",username = "",password = "",user_agent = "testmemebot")
     subreddit = r.subreddit("dankmemes")
     posts = subreddit.hot(limit = random.randint(1,20))
     for post in posts:
@@ -42,52 +41,6 @@ async def say(ctx, *, message):
     message = str(message)
     await ctx.send(message)
 
-server_on = False
-@bot.command()
-async def start(ctx):
-    """Starts the Minecraft Server"""
-    global server_on
-    if server_on:
-        await ctx.send("Server is already running")
-        await ctx.send("In order to stop it, do */stop* or message Istifaa Ali")
-    else:
-        server_on = True
-        await ctx.send("Starting Minecraft Server...\nIP: *`99.238.16.115`*\nPort: *`25565`*\nMC Version: *`1.15.2`*")
-        await ctx.send("Ignore the server port unless there are 2 servers running")
-        await ctx.send("If you are OPPED on the server then do `/stop` once you are finished")
-        await ctx.send("If you are not OPPED on the server than leave the server running")
-        await ctx.send("This command is buggy and might not work, if you are unable to connect in 5 minutes of the server starting then message Istifaa Ali")
-        await ctx.send("**USING BOT COMMANDS WHILE SERVER IS ACTIVE IS NOT RECOMMENDED**")
-        await ctx.send("**DO NOT REPEAT THE .START COMMAND ONCE THE SERVER IS ACTIVE**")
-        await ctx.send("**IF .START IS REPEATED MORE THAN ONCE, MESSAGE ISTIFAA ALI**")
-        await ctx.send("Please wait 1-2 minutes for server to boot up...")
-        #executable = '"D:\SteinerBot\craftbukkit-1.15.2.jar" -Xms4G -Xmx4G -jar craftbukkit-1.15.2.jar nogui java'
-        #process = subprocess.Popen(executable, stdin=subprocess.PIPE)
-        #subprocess.call([r'D:\Minecraft Server\start.bat'])
-        #subprocess.call(['java', '-jar', r'D:\SteinerBot\craftbukkit-1.15.2.jar'])
-        subprocess.Popen(r"java -Xmx4024M -Xms4024M -jar D:\SteinerBot\craftbukkit-1.15.2.jar nogui")
-
-@start.error
-async def start_error(ctx, error):
-    await ctx.send(f"Sorry {ctx.author.mention}, you do not have permissions to start the Minecraft Server!")
-    print(error)
-
-@bot.command()
-async def statusmc(ctx):
-    await ctx.send("IP: *`99.238.16.115`*\nPort: *`25565`*\nMC Version: *`1.15.2`*")
-    server = MinecraftServer.lookup("99.238.16.115:25565")
-    status = server.status()
-    await ctx.send("The server currently has {0} player(s) online and replied in {1} ms".format(status.players.online, status.latency))
-    latency = server.ping()
-    await ctx.send("The server replied in {0} ms".format(latency))
-
-@statusmc.error
-async def status_error(ctx, error):
-    await ctx.send("Server is not online or there was an fatal error")
-    print(error)
-
-
-
 @bot.command()
 @has_permissions(manage_messages=True)
 async def clear(ctx, amount=5):
@@ -98,11 +51,8 @@ async def clear_error(ctx, error):
 
 @bot.command(aliases = ["8ball", "eightball"])
 async def _8ball(ctx, *, question):
-    response = ["No bruh","Yes bruh","How about no nigga","well yes but actually no","ask ur mom","Outlook not so good","I aint no snitch","perhaps","yes","shutup bitch"]
-    if "gay" in question:
-        await ctx.send("he's totally fucking gay")
-    else:
-        await ctx.send(random.choice(response))
+    response = []
+    await ctx.send(random.choice(response))
 
 #Music
 queue = []
@@ -131,8 +81,6 @@ ytdl_format_options = {
 ytdl_ = ytdl.YoutubeDL(ytdl_format_options)
 loop_on = False
 
-
-
 @bot.command()
 async def loop(ctx):
     global song
@@ -155,7 +103,6 @@ async def loop(ctx):
         #queue = []
         #source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("song.mp3"))
         #client.play(source, after= loopf)
-
 
 @bot.command(aliases=["p"])
 async def play(ctx, *,url):
@@ -304,4 +251,4 @@ async def on_ready():
     print(f'Logged in as {bot.user} ({bot.user.id})')
     print('------')
 
-bot.run('NjA4NTEwNjExMDM0NDcyNDQ4.XsmXaA.osBHtylif_yvJEUHBmm5axhmCek')
+bot.run('')
