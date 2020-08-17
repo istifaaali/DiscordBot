@@ -21,9 +21,6 @@ ytdl_format_options = {
 
 ytdl = ytdl.YoutubeDL(ytdl_format_options)
 
-
-
-
 class player:
     def __init__(self, url, request_by):
         video = self._get_info(url)
@@ -34,9 +31,6 @@ class player:
         self.thumbnail = video["thumbnail"]
         self.video_url = video["webpage_url"]
         self.request_by = request_by
-
-        #self.info = ytdl.extract_info(self.url, download=True)
-        #self.source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("song.mp3"))
 
     def _get_info(self, video_url):
         with ytdl as ydl:
@@ -58,37 +52,3 @@ class player:
             embed.set_thumbnail(url=self.thumbnail)
         return embed
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    """def after_playing(self):
-        song_there = os.path.isfile("song.mp3")
-        if song_there:
-            os.remove("song.mp3")
-            print("Removed song file")
-
-        if len(self.queue) == 1:
-            self.queue = []
-            print(f"REMOVED FIRST QUEUE:{self.queue}")
-        elif len(self.queue) > 1:
-            self.queue.pop(0)
-            self.queue[0].play()
-        else:
-            print("Queue Done")
-
-    def play(self, queue):
-        #self.client.play(self.source, after = lambda e: self.after_playing())
-        pass"""
